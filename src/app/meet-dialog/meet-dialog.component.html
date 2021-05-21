@@ -1,13 +1,31 @@
-<h1 mat-dialog-title>Hi {{data.name}}</h1>
-<div mat-dialog-content>
-  <p>What's your favorite animal?</p>
-  <mat-form-field>
-    
-    <input matInput >
-  </mat-form-field>
-</div>
-<div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">No Thanks</button>
-  <button mat-button  cdkFocusInitial>Ok</button>
-</div>
+<h1 mat-dialog-title>Yeni Toplantı Oluştur</h1>
 
+<form [formGroup]="this.meetForm" (ngSubmit)="onDoneClick()">
+
+  <div mat-dialog-content>
+      <p>Tüm alanları doldurunuz</p>
+      <mat-form-field ngClass="fullwidth">
+        <input placeholder="Konu" formControlName="subject" matInput >
+      </mat-form-field>
+      <br/>
+      <mat-form-field ngClass="fullwidth" appearance="fill">
+        <mat-label>Toplantı Tarihi</mat-label>
+        <input formControlName="date" matInput [matDatepicker]="picker">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <br/>
+      <mat-form-field ngClass="fullwidth">
+        <input placeholder="Başlangıç Saati" type="time" formControlName="start_time" matInput >
+      </mat-form-field>
+      <mat-form-field ngClass="fullwidth">
+        <input type="time"  placeholder="Bitiş Saati" formControlName="end_time" matInput >
+      </mat-form-field>
+  </div>
+
+  <div mat-dialog-actions>
+    <button style="margin:5px" mat-raised-button (click)="onCancelClick()" cdkFocusInitial>İptal</button>
+    <button style="margin:5px" mat-raised-button (click)="onDoneClick()">Tamam</button>
+  </div>
+
+</form>
