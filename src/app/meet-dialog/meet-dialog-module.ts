@@ -7,10 +7,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatDatepickerModule,  } from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import { HttpService} from '../service/http-service';
-
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
-  imports: [CommonModule, MatButtonModule, MatInputModule, FormsModule, MatDatepickerModule, ReactiveFormsModule, MatNativeDateModule],
+  imports: [CommonModule, MatButtonModule, MatInputModule, FormsModule, MatDatepickerModule, ReactiveFormsModule, MatNativeDateModule, MatProgressSpinnerModule, MatSnackBarModule],
   declarations: [MeetDialogComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers:[HttpService]

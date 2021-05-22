@@ -6,7 +6,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { HttpClientModule } from '@angular/common/http';
-
+import {MatTableModule} from '@angular/material/table';
+import {HttpService} from './service/http-service'
 // Toplanti ekle/düzenle dialog bileşeni uygulama modülü içine yüklenir.
 import {MeetDialogModule} from '../app/meet-dialog/meet-dialog-module'
 
@@ -22,11 +23,12 @@ import {MeetDialogModule} from '../app/meet-dialog/meet-dialog-module'
     MeetDialogModule,
     MatDialogModule,
     MatButtonModule,
-    HttpClientModule
+    HttpClientModule,
+    MatTableModule
     
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [],
+  providers: [HttpService],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

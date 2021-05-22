@@ -1,9 +1,12 @@
-<h1 mat-dialog-title>Yeni Toplantı Oluştur</h1>
+<h1 mat-dialog-title> {{!this.data ? 'Yeni Toplantı Oluştur': 'Toplantı Detayları'}}</h1>
 
-<form [formGroup]="this.meetForm" (ngSubmit)="onDoneClick()">
+ <mat-spinner *ngIf="this.showSpinner" style="margin:auto"></mat-spinner>
 
-  <div mat-dialog-content>
+<form [formGroup]="this.meetForm">
+
+  <div *ngIf="!this.showSpinner" mat-dialog-content>
       <p>Tüm alanları doldurunuz</p>
+     
       <mat-form-field ngClass="fullwidth">
         <input placeholder="Konu" formControlName="subject" matInput >
       </mat-form-field>
