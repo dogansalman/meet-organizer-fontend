@@ -18,7 +18,12 @@ export class HttpService {
         return this.client.get(`${this.apiUrl}/${url}`, Object.assign(this.header, option));
     }
     public post(url: string, data:any): Observable<any> {
-        console.log(`${this.apiUrl}/${url}`)
         return this.client.post(`${this.apiUrl}/${url}`, data);
+    }
+    public put(url: string, data:any): Observable<any> {
+        return this.client.put(`${this.apiUrl}/${url}`, data);
+    }
+    public delete(url: string): Observable<any> {
+        return this.client.delete(`${this.apiUrl}/${url}`);
     }
 }

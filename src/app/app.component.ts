@@ -21,18 +21,20 @@ export class AppComponent implements OnInit {
   
   constructor(public dialog: MatDialog, private api: HttpService) { }
 
+  getMeets() {
+    // get meets
+    this.api.get('meets/api', {}).subscribe(_meet => {
+      this.meets = _meet;
+    })
+  }
 
   // onload get meets from api
   ngOnInit() {
-    // get meets
-    this.api.get('meets/api', {}).subscribe(_meet => {
-     this.meets = _meet;
-    })
+    this.getMeets();
   }
 
   // Open meet dialog
   openDialog(data = null): void {
-    console.log(data)
     const dialogRef = this.dialog.open(MeetDialogComponent, {
       width: '700px',
       height:'500px',
@@ -40,7 +42,13 @@ export class AppComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(meet => {
-      console.log('The dialog was closed', meet);      
+      /* Todo
+        Modal kapatıldığında yeniden bir istek yapmak yerine afterClosed içinde gönderilen meet bilgisini kullanarak 
+        meets dizisini güncellenebilir. 
+        modal kapatıldığında datasource olarak kullanılan dizide birşey değişmediği için render yeniden tetiklenmesede api den anlamsız bir request yapıyor.
+
+      */
+      this.getMeets();    
     });
   }
 }

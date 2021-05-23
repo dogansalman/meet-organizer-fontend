@@ -4,4 +4,5 @@ export interface MeetElement {
   end_time: string;
   subject: string;
   date: string;
+  Attendances: [];
 }

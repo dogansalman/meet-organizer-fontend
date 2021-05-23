@@ -24,11 +24,31 @@
       <mat-form-field ngClass="fullwidth">
         <input type="time"  placeholder="Bitiş Saati" formControlName="end_time" matInput >
       </mat-form-field>
+
+      
+      <mat-form-field class="fullwidth">
+        <mat-label>Katılımcılar</mat-label>
+        <mat-chip-list #chipList aria-label="Fruit selection">
+          <mat-chip *ngFor="let att of attendances" [selectable]="selectable"
+                  [removable]="removable" (removed)="remove(att)">
+            {{att.fullname}}
+            
+            <mat-icon matChipRemove  aria-hidden="false" *ngIf="removable" aria-label="filter icon">cancel</mat-icon>
+          </mat-chip>
+          <input formControlName="Attendances" class="fullwidth" placeholder="Yeni katılımcı..."
+                [matChipInputFor]="chipList"
+                [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                [matChipInputAddOnBlur]="addOnBlur"
+                (matChipInputTokenEnd)="add($event)">
+        </mat-chip-list>
+      </mat-form-field>
+
   </div>
 
   <div mat-dialog-actions>
     <button style="margin:5px" mat-raised-button (click)="onCancelClick()" cdkFocusInitial>İptal</button>
     <button style="margin:5px" mat-raised-button (click)="onDoneClick()">Tamam</button>
+    <button  *ngIf="this.data?.id" mat-raised-button color="warn" (click)="onDeleteClick()">Toplantıyı Sil</button>
   </div>
 
 </form>
